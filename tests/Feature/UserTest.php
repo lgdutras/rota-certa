@@ -12,15 +12,14 @@ class UserTest extends TestCase
     public function test_register_user(): void
     {
         $user = [
-            'id' => fake()->unique()->randomNumber(),
             'name' => fake()->name(),
-            'password' => fake()->password(),
+            'password' => bcrypt(fake()->password()),
             'email' => fake()->email()
         ];
 
         $response = $this->postJson(route('user.register'), $user);
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
 
         $this->assertDatabaseHas('users', $user);
         
