@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 
-class PlannigTest extends TestCase
+class PlanningTest extends TestCase
 {
     /**
      * A basic feature test example.

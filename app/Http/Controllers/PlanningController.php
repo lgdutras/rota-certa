@@ -17,7 +17,7 @@ class PlanningController extends Controller
 
             $headers = [
                 'Content-Type' => 'application/json',
-                'X-Goog-Api-Key' => 'AIzaSyDB-JTCWp9RKG78YTYNJhIOGrdVddsW3P0',
+                'X-Goog-Api-Key' => env('GCP_ACCESS_KEY', ''),
                 'X-Goog-FieldMask' => 'places.id,places.displayName,places.formattedAddress,places.priceLevel,places.currentOpeningHours,places.currentSecondaryOpeningHours,places.regularOpeningHours,places.regularSecondaryOpeningHours'
             ];
             
