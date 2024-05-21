@@ -12,22 +12,30 @@ class PlannigTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_set_locale(): void
-    {
+     private function postLocale()
+     {
         $locale = [
             'city' => fake()->city(),
-            'state' => fake()->state()
+            'state' => fake()->state(),
+            'interests' => ['parks', 'restaurants'],
         ];
 
-        $response = $this->postJson(route('planning.setLocale'), $locale);
+        return $this->postJson(route('planning.setLocale'), $locale);
+     }
 
+    public function test_payload_get_correct_status(): void
+    {
+
+        $response = $this->postLocale();
         $response->assertStatus(200);
+
+    }
+
+    public function test_has_correct_response_body(): void {
         
-        $this->assertTrue(Session::has('city'));
-        $this->assertEquals($city, Session::get('city'));
+        $response = $this->postLocale();
+        $response_data = $response->json();
 
-        $this->assertTrue(Session::has('state'));
-        $this->asserEquals($state, Session::get('state'));
-
+        $this->assertArrayHasKey('displayName', $response_data);
     }
 }

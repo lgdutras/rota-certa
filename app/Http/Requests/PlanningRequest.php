@@ -22,8 +22,9 @@ class PlanningRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'city' => 'required',
-            'state' => 'required'
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'interests' => 'required|list'
         ];
     }
 }
